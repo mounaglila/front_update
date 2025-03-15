@@ -1,0 +1,14 @@
+<p>update works!</p>
+<h2>Update Student</h2>
+<form (ngSubmit)="updateStudent()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" [(ngModel)]="studentData.NAME" name="name" required>
+
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" [(ngModel)]="studentData.LAST_NAME" name="lastname" required>
+
+  <label for="grade">Grade:</label>
+  <input type="text" id="grade" [(ngModel)]="studentData.GRADE" name="grade" required>
+
+  <button type="submit">Update</button>
+</form>
