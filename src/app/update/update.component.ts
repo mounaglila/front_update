@@ -26,10 +26,15 @@ export class UpdateComponent implements OnInit {
   }
 
   updateStudent(): void {
-    this.service.updateTableData('students', this.studentData).subscribe({
-      next: (response) => {
+    if (!this.studentId || !this.studentData) {
+      alert('Invalid student data.');
+      return;
+    }
+
+    this.service.updateTableData('students', this.studentId, this.studentData).subscribe({
+      next: () => {
         alert('Student updated successfully!');
-        this.router.navigate(['/students']); // Redirection après mise à jour
+        this.router.navigate(['/students']); // ✅ Redirection après mise à jour
       },
       error: (error) => {
         console.error('Error updating student:', error);

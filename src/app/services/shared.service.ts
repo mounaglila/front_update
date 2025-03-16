@@ -6,17 +6,18 @@ import { Observable } from 'rxjs';
 }
 )
 export class SharedService {
-  updateTableData(table: string, data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${table}`, data);
+  updateTableData(table: string, id: string, data: any): Observable<any> {
+    console.log(`Sending update request to table: ${table}, id: ${id}, with data:`, data);
+    return this.http.put<any>(`${this.apiUrl}/update/${table}/${id}`, data);
   }
 
   getTableData(table: string): Observable<any[]> { // ✅ Doit retourner un Observable
-    return this.http.get<any[]>(`${this.apiUrl}/${table}`);
+    return this.http.get<any[]>(`${this.apiUrl}/getall/${table}`);
   }
 
-   private apiUrl = 'http://localhost:3000/api/getall';
+   private apiUrl = 'http://localhost:3000/api';
    constructor(private http: HttpClient) { }
    getUsers() {
-      return this.http.get(this.apiUrl);
+      return this.http.get(`${this.apiUrl}/getall`);
    }
 }
